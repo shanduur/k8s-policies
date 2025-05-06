@@ -23,6 +23,7 @@ jobs:
         with:
           token: ${{ secrets.PAT }}
           release-type: node
+          config-file: release-please-config.json
       - if: ${{ steps.release.outputs.release_created }}
         run: |
           npm run compile
