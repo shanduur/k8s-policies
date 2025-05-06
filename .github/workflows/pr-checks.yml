@@ -1,0 +1,41 @@
+name: lint-test
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: package.json
+      - run: npm install --include=dev
+      - run: npm run format-check
+
+  test:
+    runs-on: ubuntu-latest
+    needs:
+      - format
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: package.json
+      - run: npm install --include=dev
+      - run: npm test
+
+  compile:
+    runs-on: ubuntu-latest
+    needs:
+      - format
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: package.json
+      - run: npm install --include=dev
+      - run: npm run compile

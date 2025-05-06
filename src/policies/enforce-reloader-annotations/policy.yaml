@@ -1,0 +1,12 @@
+apiVersion: policy.jspolicy.com/v1beta1
+kind: JsPolicy
+metadata:
+  name: enforce-reloader-annotations
+spec:
+  operations: [CREATE, UPDATE]
+  resources:
+    - deployments
+    - statefulsets
+    - daemonsets
+  scope: Namespaced
+  type: Mutating

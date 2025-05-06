@@ -1,0 +1,31 @@
+{
+  "name": "k8s-policies",
+  "version": "0.1.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index",
+  "engines": {
+    "node": ">=23.9.0"
+  },
+  "scripts": {
+    "compile": "tsc && npm run bundle",
+    "compile-clean": "rm -rf dist/ && tsc && npm run bundle",
+    "bundle": "webpack --config webpack.config.js",
+    "format": "prettier --write '{src,tests}/**'",
+    "format-check": "prettier --check '{src,tests}/**'",
+    "test": "jest --env=node --colors --coverage tests",
+    "prepublishOnly": "npm run test && npm run compile-clean"
+  },
+  "devDependencies": {
+    "@jspolicy/types": "^0.0.4",
+    "@jspolicy/webpack-plugin": "^0.0.5",
+    "@kubernetes/client-node": "^1.1.2",
+    "@types/jest": "^29.5.14",
+    "jest": "^29.7.0",
+    "prettier": "^3.5.3",
+    "ts-jest": "^29.3.2",
+    "typescript": "^5.8.3",
+    "webpack": "^5.99.8",
+    "webpack-cli": "^6.0.1"
+  }
+}
