@@ -18,7 +18,7 @@ jobs:
         with:
           node-version-file: package.json
       - run: npm install --include=dev
-      - uses: googleapis/release-please-action@v4
+      - uses: shanduur/release-please-action@main
         id: release
         with:
           token: ${{ secrets.PAT }}
