@@ -13,15 +13,16 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - compile
+    defaults:
+      run:
+        working-directory: ./jspolicy
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version-file: ./jspolicy/package.json
-      - working-directory: ./jspolicy
-        run: npm install --include=dev
-      - working-directory: ./jspolicy
-        run: npm test
+      - run: npm install --include=dev
+      - run: npm test
       - uses: actions/upload-artifact@v4
         with:
           name: test-jspolicy
@@ -41,17 +42,18 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
 
-  compile:
+  compile-jspolicy:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./jspolicy
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version-file: ./jspolicy/package.json
-      - working-directory: ./jspolicy
-        run: npm install --include=dev
-      - working-directory: ./jspolicy
-        run: npm run compile
+      - run: npm install --include=dev
+      - run: npm run compile
       - uses: actions/upload-artifact@v4
         with:
           name: policies-jspolicy
@@ -61,7 +63,7 @@ jobs:
   e2e:
     runs-on: ubuntu-latest
     needs:
-      - compile
+      - compile-jspolicy
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-go@v5
