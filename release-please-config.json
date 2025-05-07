@@ -4,7 +4,7 @@
   "tag-separator": "@",
   "release-type": "node",
   "separate-pull-requests": true,
-  "signoff": "shanduur-auto <75127809+shanduur-auto@users.noreply.github.com>",
+  "signoff": "Auto [bot] <75127809+shanduur-auto@users.noreply.github.com>",
   "packages": {
     ".": {
       "package-name": "k8s-policies"
