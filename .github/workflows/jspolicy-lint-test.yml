@@ -1,6 +1,9 @@
-name: lint-test
+name: jspolicy-lint-test
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
     branches:
       - main
@@ -12,9 +15,11 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version-file: package.json
-      - run: npm install --include=dev
-      - run: npm run format-check
+          node-version-file: ./jspolicy/package.json
+      - working-directory: ./jspolicy
+        run: npm install --include=dev
+      - working-directory: ./jspolicy
+        run: npm run format-check
 
   test:
     runs-on: ubuntu-latest
@@ -24,9 +29,11 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version-file: package.json
-      - run: npm install --include=dev
-      - run: npm test
+          node-version-file: ./jspolicy/package.json
+      - working-directory: ./jspolicy
+        run: npm install --include=dev
+      - working-directory: ./jspolicy
+        run: npm test
       - uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
@@ -39,13 +46,15 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version-file: package.json
-      - run: npm install --include=dev
-      - run: npm run compile
+          node-version-file: ./jspolicy/package.json
+      - working-directory: ./jspolicy
+        run: npm install --include=dev
+      - working-directory: ./jspolicy
+        run: npm run compile
       - uses: actions/upload-artifact@v4
         with:
           name: policies
-          path: 'policies/*'
+          path: 'jspolicy/policies/*'
           retention-days: 7
 
   e2e:
