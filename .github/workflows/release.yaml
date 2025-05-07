@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  issues: write
   pull-requests: write
 
 jobs:
@@ -18,10 +19,10 @@ jobs:
         with:
           node-version-file: package.json
       - run: npm install --include=dev
-      - uses: shanduur/release-please-action@main
+      - uses: googleapis/release-please-action@v4
         id: release
         with:
-          token: ${{ secrets.PAT }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           config-file: release-please-config.json
       - if: ${{ steps.release.outputs.release_created }}
         run: |
