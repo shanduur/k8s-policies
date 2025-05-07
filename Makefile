@@ -62,7 +62,7 @@ test-e2e: chainsaw ## Run the e2e tests against a k8s instance using Kyverno Cha
 	$(CHAINSAW) test ${CHAINSAW_ARGS}
 
 .PHONY: cluster
-cluster: kind ctlptl
+cluster: kind ctlptl helm
 	@PATH="${LOCALBIN}:$(PATH)" $(CTLPTL) apply -f hack/kind.yaml
 	$(CONTAINER_TOOL) run \
 		--rm --interactive --tty --detach \
@@ -91,7 +91,7 @@ $(LOCALBIN):
 ## Tool URLs
 CHAINSAW_URL ?= https://github.com/kyverno/chainsaw/releases/download/$(CHAINSAW_VERSION)/chainsaw_$(GOOS)_$(GOARCH).tar.gz
 CTLPTL_URL   ?= https://github.com/tilt-dev/ctlptl/releases/download/$(CTLPTL_VERSION)/ctlptl.$(patsubst v%,%,$(CTLPTL_VERSION)).$(OS).$(CPU_ARCH).tar.gz
-HELM_URL     ?= https://get.helm.sh/helm-$(GOOS)-$(GOARCH).tar.gz
+HELM_URL     ?= https://get.helm.sh/helm-$(HELM_VERSION)-$(GOOS)-$(GOARCH).tar.gz
 KIND_URL     ?= https://github.com/kubernetes-sigs/kind/releases/download/$(KIND_VERSION)/kind-$(GOOS)-$(GOARCH)
 KUBECTL_URL  ?= https://dl.k8s.io/release/$(KUBECTL_VERSION)/bin/$(GOOS)/$(GOARCH)/kubectl
 
