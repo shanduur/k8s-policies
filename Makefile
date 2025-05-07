@@ -96,7 +96,7 @@ CLOUD_PROVIDER_KIND_VERSION ?= v0.6.0
 CTLPTL_VERSION ?= v0.8.40
 
 # renovate: datasource=helm depName=jspolicy registryUrl=https://charts.loft.sh
-JSPOLICY_VERSION ?= 0.2.0
+JSPOLICY_VERSION ?= 0.2.2
 
 # renovate: datasource=github-tags depName=kubernetes-sigs/kind
 KIND_VERSION ?= v0.27.0
