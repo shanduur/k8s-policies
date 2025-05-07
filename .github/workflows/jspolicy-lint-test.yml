@@ -73,7 +73,9 @@ jobs:
       - uses: actions/download-artifact@v4
       - run: |
           make \
-            cluster deploy
+            cluster
+      - run: |
+          kubectl apply -f policies
       - run: |
           make \
             test-e2e

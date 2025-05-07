@@ -41,14 +41,6 @@ help: ## Display this help.
 build:
 	npm run compile
 
-.PHONY: deploy
-deploy:
-	kubectl apply -f ./policies
-
-.PHONY: undeploy
-undeploy:
-	kubectl delete -f ./policies
-
 .PHONY: test-e2e
 test-e2e: chainsaw ## Run the e2e tests against a k8s instance using Kyverno Chainsaw.
 	$(CHAINSAW) test ${CHAINSAW_ARGS}

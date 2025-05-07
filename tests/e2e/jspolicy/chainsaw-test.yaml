@@ -4,6 +4,7 @@ kind: Test
 metadata:
   name: minimal
   labels:
+    provider: 'jspolicy'
     area: 'minimal'
 spec:
   concurrent: false
