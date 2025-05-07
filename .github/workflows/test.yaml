@@ -9,10 +9,28 @@ on:
       - main
 
 jobs:
+  compile-jspolicy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./jspolicy
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: ./jspolicy/package.json
+      - run: npm install --include=dev
+      - run: npm run compile
+      - uses: actions/upload-artifact@v4
+        with:
+          name: policies-jspolicy
+          path: 'jspolicy/policies/*'
+          retention-days: 7
+
   test-jspolicy:
     runs-on: ubuntu-latest
     needs:
-      - compile
+      - compile-jspolicy
     defaults:
       run:
         working-directory: ./jspolicy
@@ -41,24 +59,6 @@ jobs:
       - uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-
-  compile-jspolicy:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./jspolicy
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version-file: ./jspolicy/package.json
-      - run: npm install --include=dev
-      - run: npm run compile
-      - uses: actions/upload-artifact@v4
-        with:
-          name: policies-jspolicy
-          path: 'jspolicy/policies/*'
-          retention-days: 7
 
   e2e:
     runs-on: ubuntu-latest

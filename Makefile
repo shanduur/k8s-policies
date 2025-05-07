@@ -54,7 +54,7 @@ cluster: kind ctlptl
 		--network kind \
 		-v /var/run/docker.sock:/var/run/docker.sock \
 		registry.k8s.io/cloud-provider-kind/cloud-controller-manager:${CLOUD_PROVIDER_KIND_VERSION} || true
-	helm install jspolicy jspolicy \
+	cd hack && helm install jspolicy jspolicy \
 		--namespace jspolicy \
 		--create-namespace \
 		--repo https://charts.loft.sh \
