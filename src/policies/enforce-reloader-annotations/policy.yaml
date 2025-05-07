@@ -1,7 +1,7 @@
 apiVersion: policy.jspolicy.com/v1beta1
 kind: JsPolicy
 metadata:
-  name: enforce-reloader-annotations
+  name: enforce-reloader-annotations.anza-labs.dev
 spec:
   operations: [CREATE, UPDATE]
   resources:
