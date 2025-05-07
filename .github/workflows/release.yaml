@@ -14,21 +14,28 @@ jobs:
   release-please:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version-file: package.json
-      - run: npm install --include=dev
       - uses: googleapis/release-please-action@v4
         id: release
         with:
           token: ${{ secrets.PAT }}
           config-file: release-please-config.json
-      - if: ${{ steps.release.outputs.release_created }}
+
+    # JSPolicy
+      - if: ${{ steps.release.outputs.jspolicy--release_created }}
+        uses: actions/checkout@v4
+      - if: ${{ steps.release.outputs.jspolicy--release_created }}
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ./jspolicy/package.json
+      - if: ${{ steps.release.outputs.jspolicy--release_created }}
+        working-directory: ./jspolicy
+        run: npm install --include=dev
+      - if: ${{ steps.release.outputs.jspolicy--release_created }}
+        working-directory: ./jspolicy
         run: |
           npm run compile
-      - if: ${{ steps.release.outputs.release_created }}
+      - if: ${{ steps.release.outputs.jspolicy--release_created }}
         uses: softprops/action-gh-release@v2
         with:
-          files: ./dist/bundle.tar.gz
-          tag_name: ${{ steps.release.outputs.tag_name }}
+          files: ./jspolicy/dist/bundle.tar.gz
+          tag_name: ${{ steps.release.outputs.jspolicy--tag_name }}

@@ -1,13 +1,13 @@
 {
   "$schema": "https://raw.githubusercontent.com/googleapis/release-please/refs/heads/main/schemas/config.json",
-  "include-component-in-tag": true,
-  "tag-separator": "@",
-  "release-type": "node",
-  "separate-pull-requests": true,
   "signoff": "Auto [bot] <75127809+shanduur-auto@users.noreply.github.com>",
+  "include-component-in-tag": true,
+  "separate-pull-requests": true,
   "packages": {
-    ".": {
-      "package-name": "k8s-policies"
+    "jspolicy": {
+      "release-type": "node",
+      "tag-separator": "@",
+      "package-name": "k8s-policies-jspolicy"
     }
   }
 }
