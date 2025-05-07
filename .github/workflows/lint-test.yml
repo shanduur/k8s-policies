@@ -27,6 +27,10 @@ jobs:
           node-version-file: package.json
       - run: npm install --include=dev
       - run: npm test
+      - uses: 5monkeys/cobertura-action@v14
+        with:
+          path: coverage/cobertura-coverage.xml
+          minimum_coverage: 45
 
   compile:
     runs-on: ubuntu-latest
