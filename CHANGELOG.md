@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/anza-labs/k8s-policies/compare/k8s-policies@v1.0.0...k8s-policies@v1.1.0) (2025-05-07)
+
+
+### Features
+
+* **tooling:** add few useful tools ([#5](https://github.com/anza-labs/k8s-policies/issues/5)) ([f0949f1](https://github.com/anza-labs/k8s-policies/commit/f0949f15bee4d35061266584e574232b58c1f193))
+
 ## 1.0.0 (2025-05-07)
 
 
